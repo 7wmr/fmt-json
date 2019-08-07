@@ -30,6 +30,7 @@ def main(argv, stdin):
         print json.dumps(list, indent=4)
     else:
         print json.dumps(list)
+
 if __name__ == "__main__":
    main(sys.argv[1:], sys.stdin)
 
