@@ -23,7 +23,7 @@ def main(argv, stdin):
         if len(row) == len(headers):
             obj = {} 
             for i, header in enumerate(headers):
-                obj[header] = row[i]
+                obj[header.lower()] = row[i]
             list.append(obj)
         
     if pretty == 'true':
