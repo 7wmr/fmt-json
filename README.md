@@ -1,4 +1,6 @@
-\n\n###Directories:\n\n```json
+###Directories:
+
+```json
 [
     {
         "count": 1, 
@@ -210,14 +212,3 @@
         "size": 4096
     }
 ]
-```
-\n\n###Disk Mounts:\n\n```json
-[]
-```
-\n\n###Processes:\n\n```json
-[]
-```
-\n\n###Connections:\n\n```json
-run_test.sh: line 19: netstat: command not found
-[]
-```
