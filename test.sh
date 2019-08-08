@@ -14,7 +14,14 @@ echo '\n\n### Processes:\n\n```json'
 ps alx | head -n 10 | python fmt-json.py -h "user,pid,ppid,cpu,pri,ni,vsz,rss,wchan,stat,tt,time,command" -s 1 -P 
 echo '```'
 
+# Environment Variables
+echo '\n\n### Environment Variables:\n\n```json'
+env | head -n 10 | python fmt-json.py -h "name,value" -d "=" -P
+echo '```'
+
 # Active connections.
 echo '\n\n### Connections:\n\n```json'
 netstat -a | head -n 10 | python fmt-json.py -h "protocol,receive_queue,send_queue,local_address,foreign_address,state" -s 1 -P
 echo '```'
+
+
