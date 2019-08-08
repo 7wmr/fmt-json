@@ -21,19 +21,20 @@ def main(argv, stdin):
         elif opt in ("-d", "--delimiter"):
             delimiter = arg
 
-    pattern = re.compile(delimiter)
+    delimiter_match = re.compile(delimiter)
     list = []
     for l, line in enumerate(stdin):
         if int(l + 1) <= skip: 
             continue
        
         line = line.strip()
-        row = pattern.split(line)
+        row = delimiter_match.split(line)
         
         if len(row) == len(headers):
             obj = {} 
             for i, header in enumerate(headers):
-                obj[header.lower()] = row[i]
+                value = int(row[i]) if re.match("^\d+$", row[i]) else row[i]
+                obj[header.lower()] = value
             list.append(obj)
         
     if pretty:
