@@ -34,9 +34,14 @@ Output
 
 See below a sample of the JSON data returned to the standard output.
 
-::data:: array of objects: successfully parsed rows.
-::errors:: array of arrays: any rows that could not be parsed
-::status:: check of the parsed output: 0: success, 1: errors
+
++--------+---------------------------+
+| data   | successfully parsed rows. |
++--------+---------------------------+
+| errors | rows could not be parsed. |
++--------+---------------------------+
+| status | 0: success, 1: errors.    |
++--------+---------------------------+
 
 .. code:: json
 
