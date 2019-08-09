@@ -40,7 +40,7 @@ See below a sample of the JSON data returned to the standard output.
 +--------+---------------------------+
 | errors | rows could not be parsed. |
 +--------+---------------------------+
-| status | 0: success                |
+| status | 0: success,               |
 |        | 1: errors                 |
 +--------+---------------------------+
 
