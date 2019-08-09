@@ -1,14 +1,6 @@
 
 # Load script content
-
-FMT_JSON=$(cat <<'EOF'
-  <add-script-here>
-EOF
-)
-
 FMT_JSON=$(cat fmt-json.py)
-
-
 
 # List directories.
 echo '\n\n### Directories:\n\n```json'
