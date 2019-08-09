@@ -3,16 +3,39 @@
 import sys, getopt, re, json
 
 def main(argv, stdin):
+    def help():
+        sys.stdout.write("""
+        FMT-JSON
+        ========
+
+            Summary:
+
+                Will parse the standard input passed to script and format as JSON string.
+
+            Flags:
+                
+                -H,  --help       switch    help for script usage
+                -h,  --headers    string    comma delimited list of header named (lowercase with underscores)
+                -P,  --pretty     switch    to indent output for JSON data
+                -K,  --key-value  switch    assume that input is a key value pair e.g. key=value
+                -s,  --skip-lines number    number of lines to skip from start of input e.g. headers line
+                -d,  --delimiter  regex     regular expression to split line on e.g. ","
+        """ + "\n")
+    
     skip = 0
     pretty = False
+    key_value = False
     delimiter = "\s+"
     try:
-        opts, args = getopt.getopt(argv,"h:Ps:d:",["headers=","pretty", "skip-lines=", "delimiter="])
+        opts, args = getopt.getopt(argv,"Hh:PKs:d:",["help", "headers=","pretty", "key-value", "skip-lines=", "delimiter="])
     except getopt.GetoptError:
-        sys.stdout.write('shell_to_json.py -h "<header>,<header>" -P\n')
+        help()
         sys.exit(2)
     for opt, arg in opts:
-        if opt in ("-h", "--headers"):
+        if opt in ("-H", "--help"):
+            help()
+            sys.exit(0)
+        elif opt in ("-h", "--headers"):
             headers = [x.strip() for x in arg.split(',')]
         elif opt in ("-P", "--pretty"):
             pretty = True
@@ -20,6 +43,8 @@ def main(argv, stdin):
             skip = int(arg)
         elif opt in ("-d", "--delimiter"):
             delimiter = arg
+        elif opt in ("-K", "--key-value"):
+            key_value = True
 
     delimiter_match = re.compile(delimiter)
     valid_rows = []
@@ -29,7 +54,12 @@ def main(argv, stdin):
             continue
        
         line = line.strip()
-        row = delimiter_match.split(line)
+        if key_value:
+            # Split on first match only e.g. key=value
+            row = delimiter_match.split(line, 1)
+        else:
+            # Split on all matches e.g. one,two,three
+            row = delimiter_match.split(line)
         
         if len(row) == len(headers):
             obj = {} 
