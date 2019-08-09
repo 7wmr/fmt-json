@@ -19,7 +19,7 @@ echo '```'
 
 # Environment Variables
 echo '\n\n### Environment Variables:\n\n```json'
-env | head -n 10 | python -c "$FMT_JSON" -h "name,value" -d "=" -P
+env | head -n 10 | python -c "$FMT_JSON" -h "name,value" -d "=" -P -K
 echo '```'
 
 # Active connections.
@@ -27,4 +27,6 @@ echo '\n\n### Connections:\n\n```json'
 netstat -a | head -n 10 | python -c "$FMT_JSON" -h "protocol,receive_queue,send_queue,local_address,foreign_address,state" -s 2 -P
 echo '```'
 
-
+# Brew services.
+echo '\n\n### Brew Services:\n\n```json'
+brew services list | python -c "$FMT_JSON" -h "name,status,user,plist" -s 1 -P

@@ -62,10 +62,14 @@ def main(argv, stdin):
             # Split on all matches e.g. one,two,three
             row = delimiter_match.split(line)
         
-        if len(row) == len(headers):
+        if len(row) <= len(headers):
             obj = {} 
             for i, header in enumerate(headers):
-                value = int(row[i]) if re.match("^\d+$", row[i]) else row[i]
+                if i >= len(row):
+                    value = None
+                else:
+                    value = int(row[i]) if re.match("^\d+$", row[i]) else row[i]
+
                 obj[header.lower()] = value
             valid_rows.append(obj)
         else:
