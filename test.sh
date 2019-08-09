@@ -32,7 +32,7 @@ echo '```'
 
 # Active connections.
 echo '\n\n### Connections:\n\n```json'
-netstat -a | head -n 10 | python -c "$FMT_JSON" -h "protocol,receive_queue,send_queue,local_address,foreign_address,state" -s 1 -P
+netstat -a | head -n 10 | python -c "$FMT_JSON" -h "protocol,receive_queue,send_queue,local_address,foreign_address,state" -s 2 -P
 echo '```'
 
 
