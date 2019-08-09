@@ -2,7 +2,7 @@
 FMT-JSON
 =========================
 
-Loading script
+Loading
 -------------------------
 
 Python script code should be added to the EOF block so that it can be set to the variable $FMT_JSON.
@@ -15,7 +15,7 @@ Python script code should be added to the EOF block so that it can be set to the
   )
 
 
-Running script
+Execution
 -------------------------
 
 The python interpreter is called passing the script in via the ``-c`` argument. 
@@ -28,7 +28,15 @@ All following arguments apply to the script.
 
 The output to be parsed e.g. ``ls -la /`` should be piped to the python interpreter.
 
-The JSON returned will look like the below example:
+
+Output
+-------------------------
+
+See below a sample of the JSON data returned to the standard output.
+
+::data:: array of objects: successfully parsed rows.
+::errors:: array of arrays: any rows that could not be parsed
+::status:: check of the parsed output: 0: success, 1: errors
 
 .. code:: json
 
