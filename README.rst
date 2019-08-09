@@ -9,10 +9,10 @@ Python script code should be added to the EOF block so that it can be set to the
 
 .. code:: bash
   
-   FMT_JSON=$(cat <<'EOF'
-     <add-script-here>
-   EOF
-   )
+  FMT_JSON=$(cat <<'EOF'
+    <add-script-here>
+  EOF
+  )
 
 
 Running script
@@ -24,6 +24,47 @@ All following arguments apply to the script.
 
 .. code:: bash
 
-   ls -la ../ | python -c "$FMT_JSON" -h "permissions,count,owner,group,size,day,month,time_year,name" -P
+  ls -la / | python -c "$FMT_JSON" -h "permissions,count,owner,group,size,day,month,time_year,name" -P
 
 The output to be parsed e.g. ``ls -la /`` should be piped to the python interpreter.
+
+The JSON returned will look like the below example:
+
+.. code:: json
+
+  [ 
+    {
+        "permissions": "drwxr-xr-x",
+        "count": 5,
+        "owner": "root",
+        "group": "wheel",
+        "size": 160,
+        "day": 3,
+        "month": "Sep",
+        "time_year": 2018,
+        "name": "opt"
+    },
+    {
+        "permissions": "drwxr-xr-x@",
+        "count": 64,
+        "owner": "root",
+        "group": "wheel",
+        "size": 2048,
+        "day": 12,
+        "month": "Jul",
+        "time_year": "09:08",
+        "name": "sbin"
+    },
+    {
+        "permissions": "drwxr-xr-x@",
+        "count": 10,
+        "owner": "root",
+        "group": "wheel",
+        "size": 320,
+        "day": 25,
+        "month": "Sep",
+        "time_year": 2018,
+        "name": "usr"
+    }
+  ]
+
