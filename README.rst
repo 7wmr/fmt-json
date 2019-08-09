@@ -32,39 +32,33 @@ The JSON returned will look like the below example:
 
 .. code:: json
 
-  [ 
-    {
-        "permissions": "drwxr-xr-x",
-        "count": 5,
-        "owner": "root",
-        "group": "wheel",
-        "size": 160,
-        "day": 3,
-        "month": "Sep",
-        "time_year": 2018,
-        "name": "opt"
-    },
-    {
-        "permissions": "drwxr-xr-x@",
-        "count": 64,
-        "owner": "root",
-        "group": "wheel",
-        "size": 2048,
-        "day": 12,
-        "month": "Jul",
-        "time_year": "09:08",
-        "name": "sbin"
-    },
-    {
-        "permissions": "drwxr-xr-x@",
-        "count": 10,
-        "owner": "root",
-        "group": "wheel",
-        "size": 320,
-        "day": 25,
-        "month": "Sep",
-        "time_year": 2018,
-        "name": "usr"
-    }
-  ]
+  {
+      "data": [
+          {
+              "permissions": "drwxr-xr-x@",
+              "count": 64,
+              "owner": "root",
+              "group": "wheel",
+              "size": 2048,
+              "day": 12,
+              "month": "Jul",
+              "time_year": "09:08",
+              "name": "sbin"
+          },
+          {
+              "permissions": "drwxr-xr-x@",
+              "count": 10,
+              "owner": "root",
+              "group": "wheel",
+              "size": 320,
+              "day": 25,
+              "month": "Sep",
+              "time_year": 2018,
+              "name": "usr"
+          }
+      ],
+      "errors": [
 
+      ],
+      "status": 0
+  }

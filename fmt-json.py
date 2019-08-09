@@ -22,7 +22,7 @@ def main(argv, stdin):
             delimiter = arg
 
     delimiter_match = re.compile(delimiter)
-    list = []
+    valid_rows = []
     invalid_rows = []
     for l, line in enumerate(stdin):
         if int(l + 1) <= skip: 
@@ -36,14 +36,19 @@ def main(argv, stdin):
             for i, header in enumerate(headers):
                 value = int(row[i]) if re.match("^\d+$", row[i]) else row[i]
                 obj[header.lower()] = value
-            list.append(obj)
+            valid_rows.append(obj)
         else:
             invalid_rows.append(row)
-        
+
+    response = {}
+    response['data'] = valid_rows
+    response['errors'] = invalid_rows
+    response['status'] = 0 if len(invalid_rows) == 0 else 1 
+
     if pretty:
-        sys.stdout.write(json.dumps(list, indent=4) + '\n')
+        sys.stdout.write(json.dumps(response, indent=4) + '\n')
     else:
-        sys.stdout.write(json.dumps(list) + '\n')
+        sys.stdout.write(json.dumps(response) + '\n')
 
 if __name__ == "__main__":
    main(sys.argv[1:], sys.stdin)
