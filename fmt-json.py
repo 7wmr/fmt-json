@@ -29,6 +29,7 @@ def main(argv, stdin):
     try:
         opts, args = getopt.getopt(argv,"Hh:PKs:d:",["help", "headers=","pretty", "key-value", "skip-lines=", "delimiter="])
     except getopt.GetoptError:
+        sys.stdout.write("Incorrect usage: see help guide below.\n")
         help()
         sys.exit(2)
     for opt, arg in opts:
