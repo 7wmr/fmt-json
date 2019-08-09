@@ -23,6 +23,7 @@ def main(argv, stdin):
 
     delimiter_match = re.compile(delimiter)
     list = []
+    invalid_rows = []
     for l, line in enumerate(stdin):
         if int(l + 1) <= skip: 
             continue
@@ -36,6 +37,8 @@ def main(argv, stdin):
                 value = int(row[i]) if re.match("^\d+$", row[i]) else row[i]
                 obj[header.lower()] = value
             list.append(obj)
+        else:
+            invalid_rows.append(row)
         
     if pretty:
         sys.stdout.write(json.dumps(list, indent=4) + '\n')
